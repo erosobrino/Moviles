@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Tema2_Ejer1</string>
+    <string name="btnCalcular">Calculate</string>
+    <string name="presionarMas">Press longer</string>
+    <string name="suma">Sum</string>
+    <string name="resta">Subtraction</string>
+    <string name="multiplicacion">Multiplication</string>
+    <string name="division">Division</string>
+    <string name="error0">The divisior can\'t be 0</string>
+    <string name="errorIntroducir">You should put valid values</string>
+</resources>

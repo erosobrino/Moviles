@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Tema2_Ejer1</string>
+    <string name="btnCalcular">Calcular</string>
+    <string name="presionarMas">Presiona mas tiempo</string>
+    <string name="suma">Suma</string>
+    <string name="resta">Resta</string>
+    <string name="multiplicacion">Multiplicacion</string>
+    <string name="division">Division</string>
+    <string name="error0">El divisor no puede ser 0</string>
+    <string name="errorIntroducir">Debes poner valores validos</string>
+</resources>
