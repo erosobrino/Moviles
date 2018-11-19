@@ -11,4 +11,7 @@
     <string name="fecha">Date</string>
     <string name="duracion">Duration</string>
     <string name="sala">Room</string>
+    <string name="clasifEdades">Age clasification</string>
+    <string name="titulo">Title</string>
+    <string name="seleccionarFecha">Select Date</string>
 </resources>

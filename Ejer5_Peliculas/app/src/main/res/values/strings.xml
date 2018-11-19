@@ -10,4 +10,7 @@
     <string name="fecha">Fecha</string>
     <string name="duracion">Duracion</string>
     <string name="sala">Sala</string>
+    <string name="titulo">Titulo</string>
+    <string name="clasifEdades">Clasificacion por edades</string>
+    <string name="seleccionarFecha">Seleccionar Fecha</string>
 </resources>

@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import javax.xml.transform.Result;
+
 public class MainActivity extends AppCompatActivity {
 
     AdaptadorPeliculas adaptador;
@@ -83,6 +85,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivityForResult(favoritas,1);
                 break;
             case R.id.btAdd:
+                Intent itNueva = new Intent(MainActivity.this, NuevaPeliculaActivity.class);
+                itNueva.putExtra("peliculas", peliculas);
+                startActivityForResult(itNueva,2);
                 break;
         }
         return true;
@@ -98,6 +103,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             peliculas = (ArrayList<Pelicula>) data.getExtras().get("peliculas");
+        }
+        if (requestCode==2 && resultCode==RESULT_OK){
+            peliculas.add((Pelicula) data.getExtras().get("pelicula"));
         }
     }
 
