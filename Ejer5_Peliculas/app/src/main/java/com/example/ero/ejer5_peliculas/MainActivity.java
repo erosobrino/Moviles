@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        peliculas=rellenaPeliculas();
+        peliculas = rellenaPeliculas();
 
         final TextView tvTituloPrincipal = findViewById(R.id.tvTituloPrincipal);
         if (peliculas.size() > 0) {
@@ -82,12 +82,11 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btFavoritos:
                 Intent favoritas = new Intent(MainActivity.this, FavoritasActivity.class);
                 favoritas.putExtra("peliculas", peliculas);
-                startActivityForResult(favoritas,1);
+                startActivityForResult(favoritas, 1);
                 break;
             case R.id.btAdd:
                 Intent itNueva = new Intent(MainActivity.this, NuevaPeliculaActivity.class);
-                itNueva.putExtra("peliculas", peliculas);
-                startActivityForResult(itNueva,2);
+                startActivityForResult(itNueva, 2);
                 break;
         }
         return true;
@@ -104,8 +103,10 @@ public class MainActivity extends AppCompatActivity {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             peliculas = (ArrayList<Pelicula>) data.getExtras().get("peliculas");
         }
-        if (requestCode==2 && resultCode==RESULT_OK){
-            peliculas.add((Pelicula) data.getExtras().get("pelicula"));
+        if (requestCode == 2 && resultCode == RESULT_OK) {
+            Pelicula peli = (Pelicula) data.getExtras().get("pelicula");
+            peliculas.add(peli);
+            adaptador.notifyDataSetChanged();
         }
     }
 

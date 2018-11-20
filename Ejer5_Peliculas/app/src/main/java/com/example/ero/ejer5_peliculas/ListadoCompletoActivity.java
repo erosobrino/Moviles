@@ -31,6 +31,7 @@ public class ListadoCompletoActivity extends AppCompatActivity {
         adaptador = new AdaptadorCompleto(this, peliculas);
         ListView lista = findViewById(R.id.listaCompleta);
         lista.setAdapter(adaptador);
+        adaptador.notifyDataSetChanged();
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

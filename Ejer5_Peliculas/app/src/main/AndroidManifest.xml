@@ -19,7 +19,8 @@
         <activity android:name=".FavoritasActivity" />
         <activity android:name=".ListadoCompletoActivity" />
         <activity android:name=".SinopsisPeliculaActivity" />
-        <activity android:name=".NuevaPeliculaActivity"></activity>
+        <activity android:name=".NuevaPeliculaActivity" />
+        <activity android:name=".FechaActivity"></activity>
     </application>
 
 </manifest>

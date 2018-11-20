@@ -14,4 +14,6 @@
     <string name="clasifEdades">Age clasification</string>
     <string name="titulo">Title</string>
     <string name="seleccionarFecha">Select Date</string>
+    <string name="rellenarDatos">You should fill all the data</string>
+    <string name="nullDate">The date can\'t be null</string>
 </resources>
