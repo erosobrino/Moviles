@@ -99,8 +99,8 @@ public class NuevaPeliculaActivity extends AppCompatActivity {
             } else {
                 if (titulo.length() > 0 && director.length() > 0 && duracion > 0) {
                     Pelicula pelicula = new Pelicula(titulo, director, duracion, fecha, sala, clasificacion, R.drawable.sincara);
+                    Pelicula.peliculas.add(pelicula);
                     Intent itDevolverPeli = new Intent();
-                    itDevolverPeli.putExtra("pelicula", pelicula);
                     setResult(RESULT_OK, itDevolverPeli);
                     finish();
                 } else {

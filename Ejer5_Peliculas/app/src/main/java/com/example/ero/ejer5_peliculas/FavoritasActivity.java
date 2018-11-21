@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public class FavoritasActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter;
     ArrayList<Pelicula> peliculas;
+    ListView lvFavoritas;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,12 +24,11 @@ public class FavoritasActivity extends AppCompatActivity {
         setContentView(R.layout.activity_favoritas);
         setTitle(R.string.peliculas_favoritas);
 
-        final ListView lvFavoritas = findViewById(R.id.lvFavoritas);
+        lvFavoritas = findViewById(R.id.lvFavoritas);
         lvFavoritas.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
 
-        Intent itPrincipal = getIntent();
+        peliculas = Pelicula.getPeliculas();
 
-        peliculas = (ArrayList<Pelicula>) itPrincipal.getExtras().get("peliculas");
         ArrayList<String> tituloPeliculas = new ArrayList<>();
         for (int i = 0; i < peliculas.size(); i++) {
             tituloPeliculas.add(peliculas.get(i).titulo);
@@ -40,24 +40,15 @@ public class FavoritasActivity extends AppCompatActivity {
         for (int j = 0; j < peliculas.size(); j++) {
             lvFavoritas.setItemChecked(j, peliculas.get(j).favorita);
         }
-        adapter.notifyDataSetChanged();
-
-        lvFavoritas.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                peliculas.get(position).setFavorita(lvFavoritas.isItemChecked(position));
-            }
-        });
-
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.btVolver:
-                Intent itDevolverFav = new Intent();
-                itDevolverFav.putExtra("peliculas", peliculas);
-                setResult(RESULT_OK, itDevolverFav);
+                for (int i = 0; i < peliculas.size(); i++) {
+                    peliculas.get(i).favorita = lvFavoritas.isItemChecked(i);
+                }
                 finish();
         }
         return true;

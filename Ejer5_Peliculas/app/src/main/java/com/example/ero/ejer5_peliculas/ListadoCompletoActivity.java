@@ -24,8 +24,9 @@ public class ListadoCompletoActivity extends AppCompatActivity {
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        final Intent itPrincipal = getIntent();
-        peliculas = (ArrayList<Pelicula>) itPrincipal.getExtras().get("peliculas");
+//        final Intent itPrincipal = getIntent();
+//        peliculas = (ArrayList<Pelicula>) itPrincipal.getExtras().get("peliculas");
+        peliculas=Pelicula.getPeliculas();
 
 
         adaptador = new AdaptadorCompleto(this, peliculas);
