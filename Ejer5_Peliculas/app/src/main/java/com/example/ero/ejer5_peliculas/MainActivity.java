@@ -26,7 +26,7 @@ import java.util.Date;
 import javax.xml.transform.Result;
 
 public class MainActivity extends AppCompatActivity {
-
+//Ero Sobrino
     AdaptadorPeliculas adaptador;
     ArrayList<Pelicula> peliculas;
 

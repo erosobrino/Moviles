@@ -1,25 +1,24 @@
 package com.example.ero.ejer5_peliculas;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.Drawable;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 public class NuevaPeliculaActivity extends AppCompatActivity {
 
@@ -30,6 +29,7 @@ public class NuevaPeliculaActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_nueva_pelicula);
+        setTitle(R.string.anadirPelicula);
 
         String[] salas = new String[]{"Gran Vía", "Travesía", "Plaza Elíptica"};
         Spinner spinner = findViewById(R.id.spinner);
@@ -70,6 +70,16 @@ public class NuevaPeliculaActivity extends AppCompatActivity {
                 startActivityForResult(itFecha, 1);
             }
         });
+
+        TextView tvfecha = findViewById(R.id.tvFecha);
+        tvfecha.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent itFecha = new Intent(getApplicationContext(), FechaActivity.class);
+                startActivityForResult(itFecha, 1);
+            }
+        });
+
     }
 
     @Override
@@ -92,7 +102,12 @@ public class NuevaPeliculaActivity extends AppCompatActivity {
             String sala = spiner.getSelectedItem().toString();
 
             if (etDuracion.getText().toString().length() > 0) {
-                duracion = Integer.parseInt(etDuracion.getText().toString());
+                try {
+                    duracion = Integer.parseInt(etDuracion.getText().toString());
+                } catch (Exception e) {
+                    Toast.makeText(getApplicationContext(),R.string.bigNumber,Toast.LENGTH_SHORT).show();
+                }
+                ;
             }
             if (fecha == null) {
                 Toast.makeText(getApplicationContext(), R.string.nullDate, Toast.LENGTH_SHORT).show();
@@ -115,6 +130,10 @@ public class NuevaPeliculaActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             fecha = (Date) data.getExtras().get("fecha");
+            TextView tvfecha = findViewById(R.id.tvFecha);
+            DateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+            String date = formato.format(fecha);
+            tvfecha.setText(date);
         }
     }
 }

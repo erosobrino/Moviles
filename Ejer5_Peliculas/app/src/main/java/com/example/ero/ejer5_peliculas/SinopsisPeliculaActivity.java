@@ -23,8 +23,12 @@ public class SinopsisPeliculaActivity extends AppCompatActivity {
         TextView tvSinopsis = findViewById(R.id.tvSinopsis);
         Intent itDatos = getIntent();
         final Pelicula peli = (Pelicula) itDatos.getExtras().get("pelicula");
+        setTitle(peli.titulo);
         ivCaratula.setImageResource(peli.portada);
         tvSinopsis.setText(peli.sinopsis);
+        if (tvSinopsis.getText().length() == 0) {
+            tvSinopsis.setText(R.string.sinSinopsis);
+        }
 
         ivCaratula.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,12 +49,16 @@ public class SinopsisPeliculaActivity extends AppCompatActivity {
     }
 
     public void watchYoutubeVideo(String id) {
-        Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
-        Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
-        try {
-            startActivity(appIntent);
-        } catch (ActivityNotFoundException ex) {
-            startActivity(webIntent);
+        if (id !=null) {
+            Intent appIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube:" + id));
+            Intent webIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://www.youtube.com/watch?v=" + id));
+            try {
+                startActivity(appIntent);
+            } catch (ActivityNotFoundException ex) {
+                startActivity(webIntent);
+            }
+        }else {
+            Toast.makeText(getApplicationContext(), R.string.sinTrailer, Toast.LENGTH_SHORT).show();
         }
     }
 }

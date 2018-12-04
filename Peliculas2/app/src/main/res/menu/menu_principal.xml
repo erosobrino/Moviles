@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btCompleta"
+        android:icon="@drawable/ic_film"
+        android:title="Lista Completa"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/btFavoritas"
+        android:icon="@drawable/ic_favorite"
+        android:title="Favoritas"
+        app:showAsAction="always|withText" />
+    <item
+        android:id="@+id/btAñadir"
+        android:icon="@drawable/ic_add"
+        android:title="Añadir Pelicula"
+        app:showAsAction="always" />
+</menu>
