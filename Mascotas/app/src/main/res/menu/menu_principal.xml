@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/btVer"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/ver"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/btAñadir"
+        android:icon="@android:drawable/ic_input_add"
+        android:title="@string/anadir"
+        app:showAsAction="ifRoom|withText" />
+</menu>

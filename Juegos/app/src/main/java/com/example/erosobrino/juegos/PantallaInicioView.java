@@ -10,12 +10,14 @@ import android.graphics.RectF;
 import android.text.Layout;
 import android.text.StaticLayout;
 import android.text.TextPaint;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 
 public class PantallaInicioView extends View {
-    int anchoPantalla, altoPantalla, cont = 1;
-    float posXCirculo = 50, posYCirculo = 50;
+    int anchoPantalla, altoPantalla;
+    float posXCirculo = 0, posYCirculo = 0;
     String texto;
     Paint paint;
     TextPaint tpaint;
@@ -24,22 +26,24 @@ public class PantallaInicioView extends View {
     StaticLayout textLayout;
     boolean pulsado = false;
     double tamaño;
-    double velocidad;
+    int alpha;
+    int cont;
+    String text;
 
     public PantallaInicioView(Context context) {
         super(context);
         paint = new Paint();
         paint.setAlpha(240);
-        paint.setTextSize(110);
+        paint.setTextSize(getPixels(11));
         paint.setAntiAlias(true);
         tpaint = new TextPaint();
-        tpaint.setTextSize(80);
+        tpaint.setTextSize(getPixels(8));
         tpaint.setTextAlign(Paint.Align.CENTER);
         tpaint.setColor(Color.WHITE);
-        tpaint.setShadowLayer(4f, 4f, 4f, Color.RED);
-        cuadrado = new Rect(20, 210, 350, 410);
-        cuadrado2 = new RectF(320, 240, 640, 440);
-        cuadradoBorde = new Rect(620, 210, 920, 410);
+        tpaint.setShadowLayer(getPixels(4f), getPixels(4f), getPixels(4f), Color.RED);
+        cuadrado = new Rect(getPixels(6.66f), getPixels(70), getPixels(115), getPixels(136.6f));
+        cuadrado2 = new RectF(getPixels(110),getPixels(80),getPixels(200),getPixels(140));
+        cuadradoBorde = new Rect(getPixels(185), getPixels(70), getPixels(270), getPixels(136));
         cuadradoConTexto = new Rect();
     }
 
@@ -47,14 +51,14 @@ public class PantallaInicioView extends View {
     protected void onDraw(Canvas canvas) {
         canvas.drawColor(Color.BLUE);
         paint.setColor(Color.WHITE);
-        canvas.drawText(cont + " Prueba de texto", 20, 100, paint);
+        canvas.drawText(" Prueba de texto"+text, getPixels(20), getPixels(10), paint);
         paint.setColor(Color.GREEN);
         canvas.drawRect(cuadrado, paint);
-        paint.setAlpha(170);
         paint.setColor(Color.RED);
-        canvas.drawRoundRect(cuadrado2, 40, 30, paint);
-        paint.setAlpha(240);
+        paint.setAlpha(170);
+        canvas.drawRoundRect(cuadrado2, getPixels(10), getPixels(30), paint);
         paint.setColor(Color.GREEN);
+        paint.setAlpha(240);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(10);
         canvas.drawRect(cuadradoBorde, paint);
@@ -63,15 +67,17 @@ public class PantallaInicioView extends View {
         canvas.drawCircle(anchoPantalla / 2, altoPantalla / 2, 100, paint);
         paint.setColor(Color.WHITE);
         if (pulsado && tamaño > 1) {
-            if (velocidad <= 0) {
-                velocidad = 0.5;
+            if (tamaño > cont + 1) {
+                cont++;
+                tamaño -= cont;
             } else {
-                velocidad -= 2;
-            }
-            tamaño -= velocidad;
-            if (tamaño < 0) {
                 tamaño = 1;
             }
+            if (alpha > 5) {
+                alpha -= 5;
+            } else
+                alpha = 1;
+            paint.setAlpha(alpha);
             canvas.drawCircle(posXCirculo, posYCirculo, (float) tamaño, paint);
         }
         textLayout = new StaticLayout(texto, tpaint, anchoPantalla / 2, Layout.Alignment.ALIGN_CENTER, 1.0f, 0.0f, false);
@@ -81,6 +87,13 @@ public class PantallaInicioView extends View {
         textLayout.draw(canvas);
         canvas.restore();
         invalidate();
+    }
+
+    public int getPixels(float dp) {
+        DisplayMetrics metrics = new DisplayMetrics();
+        ((WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE)).getDefaultDisplay().
+                getMetrics(metrics);
+        return (int) (dp * metrics.density);
     }
 
     @Override
@@ -95,8 +108,11 @@ public class PantallaInicioView extends View {
                 posXCirculo = x;
                 posYCirculo = y;
                 pulsado = true;
-                tamaño = 200;
-                velocidad = 40;
+                tamaño = 400;
+                alpha = 255;
+                cont = 0;
+                text=getPixels(x)+" ";
+                text+=getPixels(y);
                 break;
         }
 

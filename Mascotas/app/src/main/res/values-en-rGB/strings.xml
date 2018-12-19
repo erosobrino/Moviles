@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ero Sobrino</string>
+    <string name="borrar">Delete</string>
+    <string name="lista_mascotas">Pet List</string>
+    <string name="anadir">Add</string>
+    <string name="ver">See</string>
+    <string name="volcar">Dump</string>
+    <string name="nombre">Name</string>
+    <string name="peso">Weight</string>
+    <string name="raza">Raza Ingles</string>
+    <string name="cancelar">Cancel</string>
+    <string name="faltandatos">Empty Data</string>
+    <string name="Noselecionado">Select One</string>
+</resources>

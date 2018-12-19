@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Ero Sobrino</string>
+    <string name="borrar">Borrar</string>
+    <string name="lista_mascotas">Lista de Mascotas</string>
+    <string name="anadir">Añadir</string>
+    <string name="ver">Ver</string>
+    <string name="volcar">Volcar</string>
+    <string name="nombre">Nombre</string>
+    <string name="raza">Raza</string>
+    <string name="peso">Peso</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="faltandatos">Datos Vacios</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="Noselecionado">Selecciona Uno</string>
+</resources>
